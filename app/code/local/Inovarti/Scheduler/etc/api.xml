@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<config>
+    <api>
+        <resources>
+            <inovarti_scheduler translate="title" module="inovarti_scheduler">
+                <model>inovarti_scheduler/api</model>
+                <title>Scheduler API</title>
+                <acl>inovarti_scheduler/inovarti_scheduler</acl>
+                <methods>
+                    <runNow translate="title" module="inovarti_scheduler">
+                        <title>Run scheduler task</title>
+                        <acl>inovarti_scheduler/inovarti_scheduler/runNow</acl>
+                    </runNow>
+                    <schedule translate="title" module="inovarti_scheduler">
+                        <title>Schedule task</title>
+                        <acl>inovarti_scheduler/inovarti_scheduler/schedule</acl>
+                    </schedule>
+                    <info translate="title" module="inovarti_scheduler">
+                        <title>Get task information</title>
+                        <acl>inovarti_scheduler/inovarti_scheduler/info</acl>
+                    </info>
+                </methods>
+            </inovarti_scheduler>
+        </resources>
+        <acl>
+            <resources>
+                <inovarti_scheduler translate="title" module="inovarti_scheduler">
+                    <title>Inovarti Scheduler</title>
+                    <runNow translate="title" module="inovarti_scheduler">
+                        <title>Run scheduler task</title>
+                    </runNow>
+                    <schedule translate="title" module="inovarti_scheduler">
+                        <title>Schedule task</title>
+                    </schedule>
+                    <info translate="title" module="inovarti_scheduler">
+                        <title>Get task information</title>
+                    </info>
+                </inovarti_scheduler>
+            </resources>
+        </acl>
+    </api>
+</config>

@@ -1,0 +1,105 @@
+<?xml version="1.0" ?>
+<config>
+	<modules>
+		<Inovarti_Scheduler>
+			<version>0.3.2</version>
+		</Inovarti_Scheduler>
+	</modules>
+
+	<global>
+		<blocks>
+			<inovarti_scheduler>
+				<class>Inovarti_Scheduler_Block</class>
+			</inovarti_scheduler>
+		</blocks>
+
+		<helpers>
+			<inovarti_scheduler>
+				<class>Inovarti_Scheduler_Helper</class>
+			</inovarti_scheduler>
+		</helpers>
+
+		<models>
+			<inovarti_scheduler>
+				<class>Inovarti_Scheduler_Model</class>
+			</inovarti_scheduler>
+
+			<cron>
+				<rewrite>
+					<observer>Inovarti_Scheduler_Model_Observer</observer>
+					<schedule>Inovarti_Scheduler_Model_Schedule</schedule>
+				</rewrite>
+			</cron>
+		</models>
+
+
+		<template>
+			<email>
+				<system_cron_error_email_template translate="label" module="inovarti_scheduler">
+					<label>Cron error</label>
+					<file>inovarti_scheduler/cron_error.html</file>
+					<type>text</type>
+				</system_cron_error_email_template>
+			</email>
+		</template>
+
+	</global>
+
+	<admin>
+		<routers>
+			<adminhtml>
+				<args>
+					<modules>
+						<Inovarti_Scheduler before="Mage_Adminhtml">Inovarti_Scheduler_Adminhtml</Inovarti_Scheduler>
+					</modules>
+				</args>
+			</adminhtml>
+		</routers>
+	</admin>
+
+	<adminhtml>
+		<translate>
+			<modules>
+				<inovarti_scheduler>
+					<files>
+						<default>Inovarti_Scheduler.csv</default>
+					</files>
+				</inovarti_scheduler>
+			</modules>
+		</translate>
+		<layout>
+			<updates>
+				<inovarti_scheduler>
+					<file>inovarti_scheduler/inovarti_scheduler.xml</file>
+				</inovarti_scheduler>
+			</updates>
+		</layout>
+	</adminhtml>
+
+	<crontab>
+		<jobs>
+			<!-- <inovartischeduler_testtask>
+				<schedule><cron_expr>*/5 * * * *</cron_expr></schedule>
+				<run><model>inovarti_scheduler/testTask::run</model></run>
+			</inovartischeduler_testtask> -->
+
+			<inovartischeduler_heartbeat>
+				<schedule><config_path>system/cron/scheduler_cron_expr_heartbeat</config_path></schedule>
+				<run><model>inovarti_scheduler/heartbeatTask::run</model></run>
+			</inovartischeduler_heartbeat>
+		</jobs>
+	</crontab>
+
+	<default>
+		<system>
+			<cron>
+				<max_running_time>120</max_running_time>
+				<scheduler_cron_expr_heartbeat>*/5 * * * *</scheduler_cron_expr_heartbeat>
+
+				<error_email_identity>general</error_email_identity>
+    			<error_email_template>system_cron_error_email_template</error_email_template>
+			</cron>
+		</system>
+	</default>
+
+</config>
